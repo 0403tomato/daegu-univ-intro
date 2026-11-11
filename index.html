@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>대구대학교 소개</title>
+  <meta name="description" content="사랑·빛·자유의 건학정신을 가진 대구대학교를 소개하는 페이지입니다." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0b4ea2;
+      --primary-dark: #073572;
+      --accent: #f2a900;
+      --bg: #ffffff;
+      --bg-soft: #f4f7fb;
+      --text: #1d2433;
+      --muted: #5b6475;
+      --card: #ffffff;
+      --border: #e3e8f0;
+      --shadow: 0 10px 30px rgba(11, 78, 162, 0.08);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1420;
+        --bg-soft: #151c2b;
+        --text: #e8ecf3;
+        --muted: #a3acbd;
+        --card: #1a2233;
+        --border: #263047;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans KR", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, 100% - 32px); margin-inline: auto; }
+
+    /* ---------- Header ---------- */
+    header {
+      position: fixed; inset: 0 0 auto 0; z-index: 100;
+      transition: background .3s, box-shadow .3s;
+    }
+    header.scrolled {
+      background: rgba(7, 53, 114, 0.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px; color: #fff;
+    }
+    .logo { font-weight: 900; font-size: 1.25rem; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px; }
+    .logo-mark {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--accent); color: var(--primary-dark);
+      display: grid; place-items: center; font-size: .95rem; font-weight: 900;
+    }
+    .nav ul { list-style: none; display: flex; gap: 28px; }
+    .nav ul a { font-weight: 500; opacity: .9; transition: opacity .2s, color .2s; }
+    .nav ul a:hover { opacity: 1; color: var(--accent); }
+    .menu-btn {
+      display: none; background: none; border: 0; color: #fff;
+      font-size: 1.6rem; cursor: pointer;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      min-height: 100vh; display: grid; place-items: center; text-align: center;
+      color: #fff; position: relative; overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(242,169,0,.25), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,.12), transparent 45%),
+        linear-gradient(135deg, var(--primary-dark), var(--primary) 60%, #1a6fd1);
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: auto 0 0 0; height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+    }
+    .hero-inner { position: relative; z-index: 1; padding: 100px 0 80px; }
+    .hero .eyebrow {
+      display: inline-block; padding: 6px 16px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.4); font-size: .9rem; margin-bottom: 24px;
+    }
+    .hero h1 { font-size: clamp(2.4rem, 7vw, 4.6rem); font-weight: 900; line-height: 1.2; letter-spacing: -1px; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { margin: 20px auto 36px; max-width: 620px; font-size: clamp(1rem, 2.4vw, 1.2rem); opacity: .9; }
+    .btn {
+      display: inline-block; padding: 14px 30px; border-radius: 999px;
+      font-weight: 700; transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: var(--primary-dark); box-shadow: 0 8px 20px rgba(242,169,0,.35); }
+    .btn-ghost { border: 2px solid rgba(255,255,255,.7); color: #fff; margin-left: 10px; }
+
+    /* ---------- Sections ---------- */
+    section { padding: 100px 0; }
+    section.soft { background: var(--bg-soft); }
+    .section-head { text-align: center; margin-bottom: 56px; }
+    .section-head .tag { color: var(--primary); font-weight: 700; letter-spacing: 2px; font-size: .85rem; }
+    @media (prefers-color-scheme: dark) { .section-head .tag { color: #6ea8ff; } }
+    .section-head h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; margin: 8px 0 12px; letter-spacing: -0.5px; }
+    .section-head p { color: var(--muted); max-width: 640px; margin-inline: auto; }
+
+    .grid { display: grid; gap: 24px; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+      padding: 32px; box-shadow: var(--shadow); transition: transform .25s;
+    }
+    .card:hover { transform: translateY(-3px); }
+    .card .icon { font-size: 2.4rem; margin-bottom: 14px; }
+    .card h3 { font-size: 1.3rem; margin-bottom: 8px; }
+    .card p { color: var(--muted); }
+
+    /* 건학정신 */
+    .value-card { text-align: center; }
+    .value-card .hanja { font-size: 3rem; font-weight: 900; color: var(--primary); line-height: 1; margin-bottom: 12px; }
+    @media (prefers-color-scheme: dark) { .value-card .hanja { color: #6ea8ff; } }
+
+    /* 역사 타임라인 */
+    .timeline { position: relative; max-width: 760px; margin-inline: auto; }
+    .timeline::before {
+      content: ""; position: absolute; left: 20px; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(var(--primary), var(--accent));
+      border-radius: 3px;
+    }
+    .tl-item { position: relative; padding: 0 0 36px 64px; }
+    .tl-item::before {
+      content: ""; position: absolute; left: 11px; top: 6px; width: 21px; height: 21px;
+      border-radius: 50%; background: var(--bg); border: 4px solid var(--primary);
+    }
+    .tl-year { font-weight: 900; font-size: 1.4rem; color: var(--primary); }
+    @media (prefers-color-scheme: dark) { .tl-year { color: #6ea8ff; } }
+    .tl-item p { color: var(--muted); }
+
+    /* 특성화 배너 */
+    .feature-banner {
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center;
+    }
+    .feature-visual {
+      aspect-ratio: 4 / 3; border-radius: 24px;
+      background: linear-gradient(135deg, var(--primary), #3d8bfd);
+      display: grid; place-items: center; color: #fff; text-align: center; padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .feature-visual strong { font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 900; display: block; line-height: 1.1; }
+    .feature-text h3 { font-size: 1.8rem; font-weight: 900; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .feature-text p { color: var(--muted); margin-bottom: 14px; }
+    .check-list { list-style: none; margin-top: 18px; }
+    .check-list li { padding-left: 30px; position: relative; margin-bottom: 10px; }
+    .check-list li::before {
+      content: "✓"; position: absolute; left: 0; top: 0; width: 22px; height: 22px;
+      background: var(--accent); color: var(--primary-dark); border-radius: 50%;
+      display: grid; place-items: center; font-size: .8rem; font-weight: 900; margin-top: 3px;
+    }
+
+    /* 배리어프리 */
+    .bf { margin-top: 110px; }
+    .bf-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff; border-radius: 24px; margin-bottom: 28px; box-shadow: var(--shadow);
+    }
+    .bf-stat { padding: 32px 24px; text-align: center; }
+    .bf-stat + .bf-stat { border-left: 1px solid rgba(255,255,255,.18); }
+    .bf-stat strong { font-size: clamp(2.2rem, 5vw, 3rem); font-weight: 900; color: var(--accent); line-height: 1.1; }
+    .bf-stat strong span { font-size: 1rem; margin-left: 4px; color: #fff; font-weight: 700; }
+    .bf-stat p { margin-top: 8px; opacity: .92; font-size: .95rem; }
+    .bf-stat small { opacity: .75; }
+    .bf-cards .card { padding: 28px; }
+    .bf-cards .card b { color: var(--text); }
+    .bf-note { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 22px; }
+
+    /* 학문 분야 — 벤토 그리드 */
+    .bento {
+      display: grid; gap: 14px;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: minmax(120px, auto);
+      grid-auto-flow: dense;
+    }
+    .bento.has-active { grid-template-columns: repeat(6, 1fr); grid-auto-rows: minmax(92px, auto); }
+
+    .college {
+      background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+      overflow: hidden; transition: background .25s, border-color .25s, box-shadow .25s;
+      display: flex; flex-direction: column; min-width: 0;
+    }
+    .college-head {
+      all: unset; box-sizing: border-box; cursor: pointer; width: 100%; height: 100%;
+      padding: 20px; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; gap: 4px;
+    }
+    .college-head:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; border-radius: 18px; }
+    .college .emoji { font-size: 2rem; line-height: 1; transition: font-size .25s; }
+    .college .name { font-weight: 700; font-size: 1.05rem; }
+    .college .count { font-size: .82rem; color: var(--muted); }
+    .college:not(.active):hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+    .college:not(.active):hover .count { color: rgba(255,255,255,.8); }
+
+    /* 다른 카드가 열려 있을 때: 작게 */
+    .bento.has-active .college:not(.active) .college-head { padding: 12px 8px; }
+    .bento.has-active .college:not(.active) .emoji { font-size: 1.4rem; }
+    .bento.has-active .college:not(.active) .name { font-size: .88rem; }
+    .bento.has-active .college:not(.active) .count { display: none; }
+
+    /* 선택된 카드: 크게 */
+    .college.active {
+      grid-column: 1 / span 4; grid-row: 1 / span 4;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff; border-color: transparent; box-shadow: var(--shadow);
+    }
+    .college.active .college-head {
+      flex-direction: row; justify-content: flex-start; align-items: center; gap: 14px;
+      height: auto; padding: 26px 28px 8px; text-align: left; cursor: default;
+    }
+    .college.active .emoji { font-size: 2.8rem; }
+    .college.active .name { font-size: 1.6rem; font-weight: 900; }
+    .college.active .count { color: rgba(255,255,255,.8); }
+    .college { position: relative; }
+    .college.active .college-head { padding-right: 76px; }
+    .close-btn {
+      position: absolute; top: 24px; right: 24px; background: rgba(255,255,255,.15); border: 0; color: #fff;
+      width: 38px; height: 38px; border-radius: 50%; font-size: 1.1rem; cursor: pointer;
+      flex-shrink: 0;
+    }
+    .close-btn:hover { background: rgba(255,255,255,.3); }
+    .majors { display: none; }
+    .college.active .majors {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+      padding: 12px 28px 28px; list-style: none;
+    }
+    .majors a {
+      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+      padding: 12px 16px; border-radius: 12px; background: rgba(255,255,255,.12);
+      font-weight: 500; font-size: .95rem; transition: background .2s, transform .2s;
+    }
+    .majors a small { display: block; font-size: .75rem; opacity: .75; font-weight: 400; }
+    .majors a .arrow { opacity: .7; flex-shrink: 0; }
+    .majors a:hover { background: var(--accent); color: var(--primary-dark); transform: translateX(3px); }
+    .bento-note { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 18px; }
+
+    ::view-transition-group(*) { animation-duration: .4s; }
+
+    /* 캠퍼스 */
+    .campus-card { padding: 0; overflow: hidden; }
+    .campus-top {
+      height: 160px; display: grid; place-items: center; font-size: 3.4rem;
+      background: linear-gradient(135deg, #1a6fd1, var(--primary-dark));
+    }
+    .campus-card.alt .campus-top { background: linear-gradient(135deg, #f2a900, #d9822b); }
+    .campus-body { padding: 28px 32px 32px; }
+    .campus-body .addr { font-size: .95rem; color: var(--muted); margin-top: 10px; }
+
+    /* CTA */
+    .cta {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff; text-align: center; border-radius: 28px; padding: 64px 32px;
+    }
+    .cta h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); font-weight: 900; margin-bottom: 12px; }
+    .cta p { opacity: .9; margin-bottom: 28px; }
+
+    footer {
+      background: #0a1424; color: #9aa6ba; padding: 40px 0; font-size: .9rem; text-align: center;
+    }
+    footer strong { color: #fff; }
+
+    /* 스크롤 등장 애니메이션 */
+    .reveal { opacity: 0; transform: translateY(8px); transition: opacity .45s ease-out, transform .45s ease-out; }
+    .reveal.show { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .feature-banner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .menu-btn { display: block; }
+      .nav ul {
+        position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; gap: 0;
+        background: rgba(7, 53, 114, 0.98); max-height: 0; overflow: hidden; transition: max-height .3s;
+      }
+      .nav ul.open { max-height: 400px; }
+      .nav ul li a { display: block; padding: 14px 24px; border-top: 1px solid rgba(255,255,255,.08); }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .bf { margin-top: 80px; }
+      .bf-stats { grid-template-columns: 1fr; }
+      .bf-stat + .bf-stat { border-left: 0; border-top: 1px solid rgba(255,255,255,.18); }
+      .bento { grid-template-columns: repeat(2, 1fr); }
+      .bento.has-active { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(76px, auto); }
+      .college.active { grid-column: 1 / -1; grid-row: auto; }
+      .college.active .majors { grid-template-columns: 1fr; padding: 8px 18px 20px; }
+      .college.active .college-head { padding: 20px 64px 6px 18px; }
+      .close-btn { top: 18px; right: 16px; }
+      .college.active .name { font-size: 1.3rem; }
+      section { padding: 72px 0; }
+      .btn-ghost { margin: 12px 0 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header">
+    <div class="container nav">
+      <a href="#top" class="logo"><span class="logo-mark">DU</span>대구대학교</a>
+      <button class="menu-btn" id="menuBtn" aria-label="메뉴 열기">☰</button>
+      <ul id="navList">
+        <li><a href="#about">대학소개</a></li>
+        <li><a href="#history">역사</a></li>
+        <li><a href="#special">특성화</a></li>
+        <li><a href="#fields">학문분야</a></li>
+        <li><a href="#campus">캠퍼스</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="container hero-inner">
+      <span class="eyebrow">Daegu University · Since 1956</span>
+      <h1>사랑 · 빛 · 자유<br /><span>대구대학교</span></h1>
+      <p>모든 사람이 함께 배우고 성장하는 대학.<br />특수교육과 재활과학의 전통 위에서 미래를 여는 인재를 길러냅니다.</p>
+      <a href="#about" class="btn btn-primary">대학 둘러보기</a>
+      <a href="https://www.daegu.ac.kr" target="_blank" rel="noopener" class="btn btn-ghost">공식 홈페이지 ↗</a>
+    </div>
+  </section>
+
+  <!-- ABOUT / 건학정신 -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="tag">ABOUT</div>
+        <h2>건학정신</h2>
+        <p>대구대학교는 장애인 교육에 헌신한 설립자의 뜻을 이어,<br />'사랑·빛·자유'를 건학정신으로 삼고 있습니다.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card value-card reveal">
+          <div class="hanja">사랑</div>
+          <h3>Love</h3>
+          <p>이웃과 사회를 향한 섬김의 마음으로, 소외된 이들과 함께하는 공동체를 만듭니다.</p>
+        </div>
+        <div class="card value-card reveal">
+          <div class="hanja">빛</div>
+          <h3>Light</h3>
+          <p>진리를 탐구하고 지식을 나누어, 세상을 밝히는 지성인을 양성합니다.</p>
+        </div>
+        <div class="card value-card reveal">
+          <div class="hanja">자유</div>
+          <h3>Freedom</h3>
+          <p>창의적이고 주체적인 사고로 스스로의 길을 개척하는 인재를 키웁니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORY -->
+  <section id="history" class="soft">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="tag">HISTORY</div>
+        <h2>걸어온 길</h2>
+        <p>장애인 교육기관에서 출발해 종합대학교로 성장하기까지</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-year">1946</div>
+          <h3>설립자 이영식 목사, 장애인 교육 시작</h3>
+          <p>시각·청각장애인을 위한 교육기관을 세우며 대구대학교의 뿌리가 시작되었습니다.</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-year">1956</div>
+          <h3>한국사회사업대학 설립</h3>
+          <p>사회사업과 복지 분야 인재 양성을 위한 대학으로 출발했습니다.</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-year">1961</div>
+          <h3>국내 최초 특수교육과 개설</h3>
+          <p>우리나라 특수교육 학문의 출발점이 되었습니다.</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-year">1981</div>
+          <h3>대구대학으로 교명 변경</h3>
+          <p>경산캠퍼스 시대를 열며 본격적인 도약을 시작했습니다.</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-year">1988</div>
+          <h3>대구대학교로 승격</h3>
+          <p>종합대학교로서 다양한 학문 분야를 아우르는 대학으로 성장했습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIAL -->
+  <section id="special">
+    <div class="container feature-banner">
+      <div class="feature-visual reveal">
+        <div>
+          <strong>특수교육<br />재활과학</strong>
+          <p style="margin-top:12px;opacity:.9">대구대학교를 대표하는 특성화 분야</p>
+        </div>
+      </div>
+      <div class="feature-text reveal">
+        <div class="section-head" style="text-align:left;margin-bottom:16px">
+          <div class="tag">SPECIALTY</div>
+        </div>
+        <h3>함께 사는 사회를 위한 교육의 선두주자</h3>
+        <p>대구대학교는 국내 특수교육과 재활과학 분야를 개척해 온 대학입니다. 오랜 전통과 노하우를 바탕으로 수많은 특수교사와 재활 전문가를 배출해 왔습니다.</p>
+        <p>장애 학생을 위한 학습 지원과 배리어프리 캠퍼스 환경을 갖추어, 누구나 차별 없이 배울 수 있는 대학을 지향합니다.</p>
+        <ul class="check-list">
+          <li>국내 특수교육 학문의 출발점</li>
+          <li>재활과학 분야 전문 인재 양성</li>
+          <li>장애 학생 지원 체계와 배리어프리 캠퍼스</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 배리어프리 캠퍼스 -->
+    <div class="container bf">
+      <div class="section-head reveal">
+        <div class="tag">BARRIER-FREE CAMPUS</div>
+        <h2>누구나 차별 없이 배우는 캠퍼스</h2>
+        <p>대구대학교는 장애대학생 교육복지지원 실태평가가 시작된 이래<br />한 번도 빠짐없이 '최우수 대학'에 선정되어 왔습니다.</p>
+      </div>
+
+      <div class="bf-stats reveal">
+        <div class="bf-stat">
+          <strong>7<span>회 연속</span></strong>
+          <p>교육부·국립특수교육원 평가 최우수<br /><small>'03 · '05 · '08 · '11 · '14 · '17 · '20</small></p>
+        </div>
+        <div class="bf-stat">
+          <strong>97.35<span>점</span></strong>
+          <p>경산캠퍼스 (2020년 평가, 100점 만점)<br /><small>전국 최상위권</small></p>
+        </div>
+        <div class="bf-stat">
+          <strong>92.5<span>점</span></strong>
+          <p>대명동캠퍼스 (2020년 평가)<br /><small>최우수 기준 90점 초과</small></p>
+        </div>
+      </div>
+
+      <div class="grid grid-3 bf-cards">
+        <div class="card reveal">
+          <div class="icon">🏛️</div>
+          <h3>전담 조직</h3>
+          <p>전담부서인 <b>장애인위원회</b>와 <b>장애학생지원센터</b>가 입학 선발부터 학습·생활 지원, 취업 지원까지 장애 유형별로 지원합니다.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">🤟</div>
+          <h3>전문 학습 지원 인력</h3>
+          <p>학생의 교육적 요구에 따라 <b>수어통역사·교육속기사</b> 등 전문학습지원사를 배치해, 입시 단계부터 수업까지 함께합니다.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">💻</div>
+          <h3>보조공학기기 · 강의실</h3>
+          <p><b>보조공학기기와 스마트기기</b>를 지원하고 강의실 환경을 개선해, 모든 학생이 같은 수업에 접근할 수 있도록 합니다.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">🦯</div>
+          <h3>맞춤형 캠퍼스 적응 교육</h3>
+          <p>시각장애 신입생 <b>캠퍼스 보행훈련</b>, <b>전동휠체어 안전교육</b>, 도서관·기숙사 이용교육과 첫 학기 교양 '장애신입생을 위한 대학생활의 길잡이'를 운영합니다.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">🏢</div>
+          <h3>시설 · 설비</h3>
+          <p>실태평가에서 <b>강의실·도서관·강당·식당·체육관·기숙사</b> 등 캠퍼스 시설 부문이 만점에 가까운 평가를 받았습니다.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">🏊</div>
+          <h3>함께하는 체육 수업</h3>
+          <p><b>수영, 수중재활스포츠, 필라테스, 휠체어테니스, 파크골프</b> 등 장애 학생도 참여할 수 있는 예체능 수업을 함께 운영합니다.</p>
+        </div>
+      </div>
+
+      <p class="bf-note">출처: 대학저널·경북매일 보도(2021. 2.), 2020년 장애대학생 교육복지지원 실태평가 결과 기준. 최신 지원 내용은 대구대학교 장애학생지원센터에 문의하세요.</p>
+    </div>
+  </section>
+
+  <!-- FIELDS -->
+  <section id="fields" class="soft">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="tag">ACADEMICS</div>
+        <h2>다양한 학문 분야</h2>
+        <p>단과대학을 누르면 소속 전공이 펼쳐지고, 전공을 누르면 해당 학과 홈페이지로 이동합니다.</p>
+      </div>
+      <div class="bento" id="bento"></div>
+      <p class="bento-note">2026학년도 대구대학교 홈페이지 기준 · 학과 개편에 따라 달라질 수 있습니다.</p>
+    </div>
+  </section>
+
+  <!-- CAMPUS -->
+  <section id="campus">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="tag">CAMPUS</div>
+        <h2>캠퍼스 안내</h2>
+        <p>넓고 푸른 자연 속 경산캠퍼스와 도심 속 대명캠퍼스</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="card campus-card reveal">
+          <div class="campus-top">🌳</div>
+          <div class="campus-body">
+            <h3>경산캠퍼스 (본교)</h3>
+            <p>국내 대학 중 손꼽히는 넓은 부지에 자리한 메인 캠퍼스입니다. 호수와 숲이 어우러진 자연 속에서 대부분의 단과대학과 기숙사, 체육 시설을 만날 수 있습니다.</p>
+            <p class="addr">📍 경상북도 경산시 진량읍 대구대로 201</p>
+          </div>
+        </div>
+        <div class="card campus-card alt reveal">
+          <div class="campus-top">🏙️</div>
+          <div class="campus-body">
+            <h3>대명캠퍼스</h3>
+            <p>대구 도심에 위치한 대학의 출발지이자 역사적 공간입니다. 교통이 편리해 지역 사회와 활발히 교류하는 캠퍼스입니다.</p>
+            <p class="addr">📍 대구광역시 남구 명덕로 104</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="cta reveal">
+        <h2>대구대학교에서 당신의 미래를 시작하세요</h2>
+        <p>입학 정보와 최신 소식은 공식 홈페이지에서 확인할 수 있습니다.</p>
+        <a href="https://www.daegu.ac.kr" target="_blank" rel="noopener" class="btn btn-primary">공식 홈페이지 방문하기 ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p><strong>대구대학교 소개 페이지</strong></p>
+      <p>이 페이지는 학습용으로 제작된 비공식 소개 페이지입니다. 정확한 정보는 <a href="https://www.daegu.ac.kr" target="_blank" rel="noopener" style="text-decoration:underline">대구대학교 공식 홈페이지</a>를 참고하세요.</p>
+    </div>
+  </footer>
+
+  <script>
+    // 스크롤 시 헤더 배경
+    const header = document.getElementById('header');
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+
+    // 모바일 메뉴
+    const menuBtn = document.getElementById('menuBtn');
+    const navList = document.getElementById('navList');
+    menuBtn.addEventListener('click', () => navList.classList.toggle('open'));
+    navList.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => navList.classList.remove('open'))
+    );
+
+    // ---------- 학문 분야: 단과대학 · 전공 데이터 (2026학년도, daegu.ac.kr 기준) ----------
+    const colleges = [
+      { name: '공공인재대학', emoji: '⚖️', majors: [
+        ['공공안전학부 소방·행정학전공', 'https://padep.daegu.ac.kr/main'],
+        ['공공안전학부 공직법무전공', 'https://law.daegu.ac.kr/main'],
+        ['경찰학부 경찰행정학전공', 'https://police.daegu.ac.kr/main'],
+        ['경찰학부 자치경찰학전공', 'https://police.daegu.ac.kr/main'],
+        ['국방군사학과', 'https://millitary-science.daegu.ac.kr/main'],
+        ['부동산·지적학과', 'https://realty.daegu.ac.kr/main'],
+      ]},
+      { name: '글로벌경영대학', emoji: '💼', majors: [
+        ['경영학부 경영학전공', 'https://dubiz.daegu.ac.kr/main'],
+        ['경영학부 회계학전공', 'https://acta.daegu.ac.kr/main'],
+        ['경제금융통상학과', 'https://economics.daegu.ac.kr/main'],
+        ['호텔관광경영학부 관광항공경영전공', 'https://tourismmanage.daegu.ac.kr/main'],
+        ['호텔관광경영학부 호텔관광외식서비스전공', 'https://hotel.daegu.ac.kr/main'],
+        ['일본어일본학과', 'https://japanese.daegu.ac.kr/main'],
+        ['국제학부 한국어교육·통번역학전공', 'https://dukorean.daegu.ac.kr/main'],
+        ['국제학부 국제어문학전공', 'https://encn.daegu.ac.kr/main'],
+      ]},
+      { name: '사회과학대학', emoji: '🌏', majors: [
+        ['사회복지학과', 'https://dsw.daegu.ac.kr/main'],
+        ['청소년상담복지학과', 'https://youth.daegu.ac.kr/main'],
+        ['아동가정복지학과', 'https://familywelfare.daegu.ac.kr/main'],
+        ['평생교육실버복지학과', 'https://cdwelfare.daegu.ac.kr/main'],
+        ['미디어커뮤니케이션학부 영상콘텐츠전공', 'https://comm.daegu.ac.kr/main'],
+        ['미디어커뮤니케이션학부 광고PR전공', 'https://comm.daegu.ac.kr/main'],
+        ['문헌정보학과', 'https://lis.daegu.ac.kr/main'],
+        ['심리학과', 'https://psychology.daegu.ac.kr/main'],
+      ]},
+      { name: '보건바이오대학', emoji: '🧬', majors: [
+        ['보건의료학과', 'https://hci.daegu.ac.kr/main'],
+        ['응급구조학과', 'https://emergency.daegu.ac.kr/main'],
+        ['동물자원학과', 'https://animal.daegu.ac.kr/main'],
+        ['반려동물산업학과', 'https://pets.daegu.ac.kr/main'],
+        ['스마트원예학과', 'https://horticulture.daegu.ac.kr/main'],
+        ['식품가공학과', 'https://foodengr.daegu.ac.kr/main'],
+        ['난임의료산업학과', 'https://imi.daegu.ac.kr/main'],
+      ]},
+      { name: 'IT·공과대학', emoji: '⚙️', majors: [
+        ['컴퓨터정보공학부 컴퓨터공학전공', 'https://ce.daegu.ac.kr/main'],
+        ['컴퓨터정보공학부 컴퓨터소프트웨어전공', 'https://sw.daegu.ac.kr/main'],
+        ['컴퓨터정보공학부 사이버보안전공', 'https://infosec.daegu.ac.kr/main'],
+        ['AI학과', 'https://ai.daegu.ac.kr/'],
+        ['IT융합학과', 'https://itcon.daegu.ac.kr/'],
+        ['전자전기공학부 반도체전자공학전공', 'https://ee.daegu.ac.kr/main'],
+        ['전자전기공학부 전기공학전공', 'https://econtrol.daegu.ac.kr/main'],
+        ['전자전기공학부 정보통신공학전공', 'https://ict.daegu.ac.kr/'],
+        ['기계자동차공학부 기계공학전공', 'https://mechanical.daegu.ac.kr/main'],
+        ['기계자동차공학부 미래자동차공학전공', 'https://mechanical.daegu.ac.kr/main'],
+        ['메카트로닉스공학과', 'https://mecha.daegu.ac.kr/'],
+        ['신소재에너지시스템공학부 신소재에너지공학전공', 'https://mese.daegu.ac.kr/'],
+        ['친환경에너지학과', 'https://energy.daegu.ac.kr/main'],
+        ['화학공학과', 'https://cheers.daegu.ac.kr/'],
+        ['생명공학과', 'https://biotech.daegu.ac.kr/'],
+        ['환경기술공학과', 'https://enveng.daegu.ac.kr/'],
+        ['건축공학과', 'https://arch.daegu.ac.kr/main'],
+        ['건설시스템공학과', 'https://civileng.daegu.ac.kr/'],
+        ['소방안전방재학과', 'https://fsd.daegu.ac.kr/main'],
+        ['식품영양학과', 'https://fn.daegu.ac.kr/main'],
+        ['조경산림정원학과', 'https://landscape.daegu.ac.kr/main'],
+      ]},
+      { name: '디자인예술대학', emoji: '🎨', majors: [
+        ['웹툰영상애니메이션학부 웹툰전공', 'https://duani.daegu.ac.kr/main'],
+        ['웹툰영상애니메이션학부 영상애니메이션전공', 'https://duani.daegu.ac.kr/main'],
+        ['시각디자인융합학부 시각디자인전공', 'https://visual.daegu.ac.kr/main'],
+        ['시각디자인융합학부 서비스마케팅디자인전공', 'https://designmarketing.daegu.ac.kr/'],
+        ['산업디자인학과', 'http://didshow.daegu.ac.kr/'],
+        ['패션디자인학과', 'https://dfd.daegu.ac.kr/main'],
+        ['뷰티학부 헤어디자인전공', 'https://dubeautystar.daegu.ac.kr/main'],
+        ['뷰티학부 메이크업·피부전공', 'https://dubeautystar.daegu.ac.kr/main'],
+        ['실내건축디자인학과', 'https://dgiad.imweb.me/'],
+        ['게임학과', 'http://game.daegu.ac.kr/'],
+        ['융합예술학부 아트앤디자인전공', 'https://dufineart.cafe24.com/'],
+        ['주얼리디자인학과', 'https://pad.daegu.ac.kr/'],
+      ]},
+      { name: '사범대학', emoji: '🍎', majors: [
+        ['특수교육과', 'https://se.daegu.ac.kr/main'],
+        ['초등특수교육과', 'https://specialcho.daegu.ac.kr/main'],
+        ['유아특수교육과', 'https://ecse.daegu.ac.kr/main'],
+        ['유아교육과', 'https://kidedu.daegu.ac.kr/main'],
+        ['국어교육과', 'https://koredu.daegu.ac.kr/main'],
+        ['영어교육과', 'https://engedu.daegu.ac.kr/main'],
+        ['역사교육과', 'https://hisedu.daegu.ac.kr/main'],
+        ['일반사회교육과', 'https://socialstudies.daegu.ac.kr/main'],
+        ['지리교육과', 'https://geoedu.daegu.ac.kr/main'],
+        ['수학교육과', 'https://mathedu.daegu.ac.kr/main'],
+        ['물리교육과', 'https://physed.daegu.ac.kr/main'],
+        ['화학교육과', 'https://h2o.daegu.ac.kr/main'],
+        ['생물교육과', 'https://bioedu.daegu.ac.kr/main'],
+        ['지구과학교육과', 'https://earth.daegu.ac.kr/main'],
+      ]},
+      { name: '재활과학대학', emoji: '♿', majors: [
+        ['물리치료학과', 'https://lovept.daegu.ac.kr/main'],
+        ['작업치료학과', 'https://duot.daegu.ac.kr/main'],
+        ['언어치료학과', 'https://daeguslp.daegu.ac.kr/main'],
+        ['재활상담심리치료학과', 'https://rehabcp.daegu.ac.kr/'],
+        ['의료재활학과', 'https://rst.daegu.ac.kr/main'],
+        ['재활건강증진학과', 'https://rehab-health.daegu.ac.kr/main'],
+        ['특수창의융합학과', 'https://rehabcc.daegu.ac.kr/main'],
+      ]},
+      { name: '간호대학', emoji: '🩺', majors: [
+        ['간호학과', 'https://nursing.daegu.ac.kr/main'],
+      ]},
+      { name: '체육레저학부', emoji: '🏃', majors: [
+        ['체육학과', 'https://physical-education.daegu.ac.kr/main'],
+        ['스포츠레저학과', 'https://sportsleisure.daegu.ac.kr/main'],
+        ['스포츠헬스케어학과', 'https://s-healthcare.daegu.ac.kr/main'],
+      ]},
+      { name: '문화콘텐츠학부', emoji: '🎬', majors: [
+        ['문화콘텐츠학부', 'https://docc.daegu.ac.kr/main'],
+      ]},
+      { name: '자유전공학부', emoji: '🧭', majors: [
+        ['자유전공학부', 'https://udm.daegu.ac.kr/main'],
+      ]},
+    ];
+
+    const bento = document.getElementById('bento');
+    const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+    bento.innerHTML = colleges.map((c, i) => {
+      // "학부 전공" 형태는 전공명을 크게, 학부명을 작게 표시
+      const items = c.majors.map(([label, url]) => {
+        const parts = label.split(' ');
+        const main = parts.length > 1 ? parts.slice(1).join(' ') : label;
+        const sub = parts.length > 1 ? `<small>${esc(parts[0])}</small>` : '';
+        return `<li><a href="${esc(url)}" target="_blank" rel="noopener"><span>${sub}${esc(main)}</span><span class="arrow">↗</span></a></li>`;
+      }).join('');
+      return `
+        <div class="college" data-i="${i}" style="view-transition-name: college-${i}">
+          <button class="college-head" aria-expanded="false" aria-controls="majors-${i}">
+            <span class="emoji">${c.emoji}</span>
+            <span><span class="name">${esc(c.name)}</span><br><span class="count">${c.majors.length}개 전공</span></span>
+          </button>
+          <ul class="majors" id="majors-${i}">${items}</ul>
+        </div>`;
+    }).join('');
+
+    const cards = [...bento.querySelectorAll('.college')];
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'close-btn';
+    closeBtn.setAttribute('aria-label', '닫기');
+    closeBtn.textContent = '✕';
+
+    function setActive(idx) {
+      const apply = () => {
+        cards.forEach((card, i) => {
+          const on = i === idx;
+          card.classList.toggle('active', on);
+          card.querySelector('.college-head').setAttribute('aria-expanded', on);
+        });
+        bento.classList.toggle('has-active', idx !== null);
+        if (idx !== null) cards[idx].appendChild(closeBtn);
+        else closeBtn.remove();
+      };
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (document.startViewTransition && !reduce) document.startViewTransition(apply);
+      else apply();
+      if (idx !== null) {
+        const top = bento.getBoundingClientRect().top + window.scrollY - 90;
+        window.scrollTo({ top, behavior: reduce ? 'auto' : 'smooth' });
+      }
+    }
+
+    cards.forEach((card, i) => {
+      card.querySelector('.college-head').addEventListener('click', () => {
+        if (!card.classList.contains('active')) setActive(i);
+      });
+    });
+    closeBtn.addEventListener('click', e => { e.stopPropagation(); setActive(null); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && bento.classList.contains('has-active')) setActive(null);
+    });
+
+    // 스크롤 등장 애니메이션
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
